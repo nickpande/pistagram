@@ -1,0 +1,35 @@
+<% include ./same/header.ejs %>
+
+    <a href="/profile">Profile</a>
+    <div class="container">
+        <form action="/story"   enctype="multipart/form-data"  method="post">
+            <input type="text" name="content" placeholder="What,s on your mind">
+            <input type="file" name="imageurl" placeholder="upload iamge">
+            <input type="submit" value="Post">
+        </form>
+    </div>
+
+    
+    <div class="container">
+        <%  data.forEach(function(val){ %>
+            <% var timeLeft = (Date.now()-val.time)/3600000 %>
+            <% if(val.story.length>0 && timeLeft<=24){ %>
+        <div class="card mt-2 mb-2 mx-2 " style="width: 18rem;">
+            <div class="card-body">
+            <h6 class="card-title"><%= val.story[0] %></h6>
+            <h6 class="card-title btn btn-primary" mt-2>Created by : <%= val.username %></h6>
+            <% if(timeLeft>=1){ %>
+            <h6 class="card-title btn btn-danger" mt-2><%= Math.floor(timeLeft) + "h" %></h6>
+            <% } else { %>
+                <h6 class="card-title btn btn-danger" mt-2><%= Math.floor(timeLeft*60) + "m" %></h6>
+                <% } %>
+        </div>
+        <% } %>
+        </div>
+      <% }) %>
+    </div>
+
+
+
+
+<% include ./same/footer.ejs %>

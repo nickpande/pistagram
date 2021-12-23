@@ -1,0 +1,85 @@
+<% include ./same/header.ejs %>
+<link rel="stylesheet" href="../stylesheets/style2.css">
+<div id="main">
+  <div id="left">
+    <div id="cover">
+    </div>
+      <div id="imagediv">
+        <img id="profile" src="../images/myUpload/<%= u.imageurl[u.imageurl.length-1] %>" class="card-img-top" alt="paat nahi kaha hai">
+      </div>
+      <div id="details">
+        <div class="form">
+             <form id="change" action="/imgupload" enctype="multipart/form-data" method="post">
+          <input type="file" class="form-control-file" name="uimage">
+          <br>
+           <button id="submit" class="btn-primary">
+             <input  type="submit" value="change" style="color:whitesmoke
+             " class="btn btn-default">
+           </button>             
+      </form>
+      </div>
+      <div class="card-body">
+        <h2 id="user" class="card-title"> <%=  u.username %></h2>
+        <h5 id="email" class="card-title"> <%=  u.email %></h5>
+        <p id="para" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="/upload" class="btn btn-primary">create post </a>
+        <a href="/story" class="btn btn-primary">create story </a>
+        </div>
+    </div>
+
+
+
+  </div>
+  <div id="right">
+      <% if(dets){ %>
+    <div class="allpost">
+    <% dets.posts.forEach(function(elem){ %>
+    <div class="post">
+      <div id="header">
+           <div class="space">
+            <i style="font-size: 28px;" class="ri-user-line"></i>
+            <h6><%= dets.username %></h6>
+           </div>
+      </div>
+      <div class="imagediv">
+           <img src="../images/myUpload/<%= elem.imageurl %>" alt="">
+      </div>
+      <div id="postbody">
+          <h2><%= elem.caption %></h2>
+          <p>
+          <%= elem.desc %>
+          </p>
+          <button class="like">
+           <a href="/like/<%= elem._id %>" class=""> likes <%= elem.likes.length %> </a>
+          </button>
+          <button class="delete">
+            <a href="/delete/<%= elem._id %>" class="">Delete </a>
+          </button>
+        </div>
+      </div>
+      <hr>
+   <% }) %>
+  </div>
+   <% } else{ %>
+   <h1> no post yet</h1>
+    <% } %> 
+  </div>
+  <div id="friend">
+    <h2> friends </h2>
+    <hr>
+    <% u.friends.forEach(function(elem){ %>
+   <div class="flist">
+    <div class="naam">
+      <h5> <%= elem %>
+      </h5>
+      <a href="/open/<%= elem %>" class="btn btn-primary p-1 ">view </a>
+   </div>   
+</div>
+<% }) %>
+  </div>
+
+
+  <script type="text/javascript">
+    document.getElementById('profile').submit();
+  </script>
+  <% include ./same/footer.ejs %>

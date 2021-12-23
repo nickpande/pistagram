@@ -1,0 +1,278 @@
+<% include ./same/header.ejs %>
+<style>
+  *
+{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body
+{
+  min-height: 100vh;
+  width: 100%;
+}
+#main{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+#left{
+  overflow: hidden;
+  min-height: 100vh;
+  width: 30%;
+  position: relative;
+  
+}
+#cover{
+  min-height: 30vh;
+  background-color: red;
+  width: 100%;
+  position: absolute;
+  background-image: url('https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+  background-position: center;
+  
+}
+.space{
+position: absolute;
+height: 100%;
+width: 20%;
+padding: 4px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+
+}
+#imagediv{
+  z-index: 7;
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: green;
+  position: relative;
+  left: 25%;
+  top: 10%;
+}
+#profile{
+  object-fit: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+
+}
+#details{
+  top: 30%;
+  position: absolute;
+  min-height:70vh;
+  width: 100%;
+  background-color: aliceblue;
+}
+#change{
+  position: absolute;
+  top: 18%;
+  left: 25%;
+  font-size: 15px;
+}
+.form{
+  top: 7%;
+  min-height: 16vh;
+  width: 100%;
+  position: absolute;
+
+}
+#submit{
+border-radius: 20px;
+position: absolute;
+left: 25%;
+top: 110%;
+}
+.card-body{
+  position: absolute;
+  top: 26%;
+  left: 10%;
+  min-height: 40vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#user{
+ font-size: 35px;
+ font-family: 'product sans';
+}
+#email{
+  font-size: 15px;
+}
+#para{
+  text-align: center;
+
+}
+
+#right{
+  width: 55%;
+  background-color: rgb(231, 231, 231);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.allpost{
+  overflow: scroll;
+  height: 700px;
+  width: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+}
+.post
+
+{
+  padding: 20px;
+  height: 350px;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  background-color: #d3e3f3;
+}
+#header{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  margin-bottom: 10px;
+  position: relative;
+}
+.imagediv{
+width: 100%;
+background-color: pink;
+height: 150px;
+
+
+}
+.imagediv img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#postbody{
+  height: 100px;
+  width: 100%;
+ background-color: #d3e3f3;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+
+}
+.delete{
+  height: 35px;
+  width: 70px;
+  border-radius: 5px;
+  background-color: orange;
+  text-decoration: none;
+  border: orange;
+  
+}
+.delete a{
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  
+}
+.like{
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  border-radius: 5px;
+  background-color: orange;
+  text-decoration: none;
+  border: orange;
+  left: 84%;
+  top: 80%;
+
+}
+.like a{
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+
+#friend{
+  width: 15%;
+  height: 100vh;
+  padding: 20px;
+}
+#user{
+  font-size: 20px;
+
+}
+
+
+
+
+</style>
+<div id="main">
+  <div id="left">
+  <div id="cover">
+  </div>
+    <div id="imagediv">
+      <img id="profile" src="../images/myUpload/<%= u.imageurl[u.imageurl.length-1] %>" class="card-img-top" alt="paat nahi kaha hai">
+    </div>
+    <div id="details">
+    <div class="card-body">
+      <h2 id="user" class="card-title"> <%=  u.username %></h2>
+      <h5 id="email" class="card-title"> <%=  u.email %></h5>
+      <p id="para" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+  </div> 
+</div>
+<div id="right">
+  <% if(dets){ %>
+<div class="allpost">
+<% dets.posts.forEach(function(elem){ %>
+<div class="post">
+  <div id="header">
+       <div class="space">
+        <i style="font-size: 28px;" class="ri-user-line"></i>
+        <h6><%= dets.username %></h6>
+       </div>
+  </div>
+  <div class="imagediv">
+       <img src="<%= elem.imageurl %>" alt="">
+  </div>
+  <div id="postbody">
+      <h2><%= elem.caption %></h2>
+      <p>
+      <%= elem.desc %>
+      </p>
+      <button class="like">
+       <a href="/like/<%= elem._id %>" class=""> likes <%= elem.likes.length %> </a>
+      </button>
+    </div>
+  </div>
+  <hr>
+<% }) %>
+</div>
+<% } else{ %>
+<h1> no post yet</h1>
+<% } %> 
+</div>
+<div id="friend">
+  <h2>Friends</h2>
+  <hr>
+  <% u.friends.forEach(function(elem){ %>
+  <h6 id="user"> <%= elem %></h6>
+  <a href="/open/<%= elem %>" class="btn btn-primary"> see profile </a>
+  <hr>
+  <% }) %>
+</div>
+
+</div>
+
+<% include ./same/footer.ejs %>

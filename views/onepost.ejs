@@ -1,0 +1,55 @@
+<% include ./same/header.ejs %>
+<div class="container">
+  <div class="d-inline-flex p-2 bd-highlight">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../images/myUpload/<%=sare.imageurl %>" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= sare.caption %></h5>
+          <p class="card-text"><%= sare.desc %></p>
+          <a href="/like/<%= sare._id %>" class="btn btn-warning"> likes <%= sare.likes.length %> </a>
+          <a href="/share/<%= sare._id %>" class="btn btn-warning"> share </a>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+    <form  action="/blog/<%=sare._id %>/comments" method="POST">
+        <div class="mb-3">
+          <label class="form-label">comment</label>
+          <input name="comment" type="text" placeholder="comment here" class="form-control" >
+        </div>
+        <button  type="submit" class="btn btn-primary">comment</button> 
+    </form> 
+     <div class="container">
+       
+          <% sare.comments.forEach((comment)=>{ %>
+            <div class="col-12"> 
+              <p>
+                <a href="/open/<%= comment.author%>">
+                  <strong> <%= comment.author%></strong>
+                </a>
+              
+            <br>
+            <%= comment.comment%> <a href=" /likecomment/<%= comment._id %>"><i class="ri-thumb-up-line"></i><%= comment.clikes.length %>  </a>
+           </p>
+            </div>
+           
+          <%  }) %>
+      
+   
+  </div>
+  </div>
+
+  
+</div>
+</div>
+
+
+
+
+
+
+<% include ./same/footer.ejs %>

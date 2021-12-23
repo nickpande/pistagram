@@ -1,0 +1,46 @@
+<% include ./same/header.ejs %>
+  <% if(dets){ %>
+    <% dets.posts.forEach(function(elem){ %>
+      <div class="d-inline-flex p-2 bd-highlight">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src=" ../images/myUpload/<%= elem.imageurl %>" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= elem.caption %></h5>
+              <p class="card-text"><%= elem.desc %></p>
+              <a href="/delete/<%= elem._id %>" class="btn btn-warning"> delete </a>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   <% }) %>
+   <% } else{ %>
+   <h1> no post yet</h1>
+    <% } %> 
+    <a href="/profile" class="btn btn-danger">profile </a>
+  <hr>
+  <div class="container">
+    <form  action="/upload" enctype="multipart/form-data"  method="POST">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">caption</label>
+        <input name="caption" type="string" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label  for="exampleInputPassword1" class="form-label">discription</label>
+        <input name="desc" type="string" class="form-control" id="exampleInputPassword1">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label"> imageurl</label>
+        <input name="imageurl" type="file" class="form-control" id="exampleInputPassword1">
+      </div>
+      <button type="submit" class="btn btn-primary">register</button>
+    </form>
+  </div>
+  <% include ./same/footer.ejs %>

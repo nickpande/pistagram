@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheets/style3.css">
+  <title>home</title>
+</head>
+<body>
+  <div id="main">
+    <div id="left">
+      <div id="head">
+        <div id="logo">
+          <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aW5zdGFncmFtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
+        </div>
+        <h4 id="pista" > Pista<span style="color:#CACAE8">gram</span></h4>
+      </div>
+       <h3 id="acc">Account</h3>
+      <div id="middle">
+      <div id="dets1">
+        <i class="ri-home-4-fill"></i>
+        <a href="/home"><h3>Home</h3></a> 
+      </div>
+      <div id="dets">
+        <i class="ri-user-fill"></i>
+        <a href="/profile"> <h3>Profile</h3> </a>
+      </div>
+      <div id="dets">
+        <i class="ri-messenger-fill"></i>
+        <a href="/message"><h3>Messag</h3></a> 
+      </div>
+        <% if( sher.shares.length > 0){ %> 
+          <div id="dets">
+            <i class="ri-heart-fill" style="color: red;"></i>
+        <a href="/alluser">
+          <h3>Activity</h3>
+        </a>
+      </div>
+        <% } else{ %>
+          <div id="dets">
+          <i class="ri-heart-3-fill"></i>
+          <a href="/alluser">
+            <h3>Activity</h3>
+          </a>
+          </div>
+          <% } %>
+
+        
+      
+      <div id="dets">
+        <i class="ri-settings-2-line"></i>
+        <a href="/logout">
+          <h3>logout</h3>
+        </a>
+        
+      </div>
+      </div>
+      <h2> Your Group</h2>
+      <div id="group">
+        <div id="grouplist">
+          <div id="logo">
+            <img src="https://th.bing.com/th/id/OIP.dPs31m824mWwmAahs2czvQHaLH?w=136&h=204&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="">
+          </div>
+          <div id="name">
+            <h3 id="groupname" > aming us </h3>
+          </div>
+          
+        </div>
+        <div id="grouplist">
+          <div id="logo">
+            <img src="https://th.bing.com/th/id/OIP.pJXUy60UJmu_CVDScRlcjwHaEK?w=302&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="">
+          </div>
+          <div id="name">
+            <h3 id="groupname" > aming us </h3>
+          </div>
+        </div>
+        <div id="grouplist">
+          <div id="logo">
+            <img src="https://th.bing.com/th/id/OIP._0omdaArpytl3KnqFJ94dQHaEK?w=319&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="">
+          </div>
+          <div id="name">
+            <h3 id="groupname" > aming </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="center">
+      <div id="user">
+        <h1> hi , <%= u.username %> </h1>
+      </div>
+      <div id="searching">  
+         <i class="ri-search-line"></i>
+          <input id="sinput" type="text" placeholder="search" >
+      </div>
+      <div id="search">
+      </div>
+      
+    <div id="mid">
+      <div id="text">
+       <h6> stories</h6>
+      </div>
+      <div id="stories">
+        <% story.forEach(function(elem,ind){ %>
+         <div class="ek">
+            <img id="<%= ind %>" src="../images/myUpload/<%= elem.imageurl %>" alt="">
+         </div>
+         <% }) %>
+      </div>
+    </div>
+   
+    <% if(dets){ %>
+      <div class="scroll">
+        <% dets.forEach(function(elem){ %>
+        <div class="post">
+          <div id="header">
+            <div class="imagediv">
+              <img src="../images/myUpload/<%= elem.author.imageurl %>" alt="">
+            </div>
+            <div id="uname">
+             <h5> 
+               <%= elem.author.username %>
+             </h5>  
+          </div>
+          </div>
+          <div id="details">
+            <h3> <%= elem.caption %> </h3>
+            <div class="imagediv2">
+              <img src=" ../images/myUpload/<%= elem.imageurl %> " alt="">
+            </div>
+            <p>
+              <%= elem.desc %>
+              </p>
+              <div id="like">
+                <div id="group2">
+                <div class="icon">
+                  <a href="/like/<%= elem._id %>" class=""; style="text-decoration: none;">   <% if( elem.likes.length > 0){ %>
+                    <i class=" ri-heart-2-fill" style="color: red;"></i>
+                    <%= elem.likes.length %> 
+                  <% } else{ %>
+                    <%= elem.likes.length %> 
+                    <i class="ri-heart-2-fill " style="text-decoration: none;"></i>
+                   <% } %></a>
+                </div>
+                <div class="icon">
+                  <a href="/onepost/<%= elem._id %>" style="text-decoration: none;"> <i class="ri-message-2-line"></i> </a>
+  
+                </div>
+                <div class="icon">
+                  <a href="/share/<%= elem._id %>" style="text-decoration: none;"> <i class="ri-share-forward-line"></i></a>
+                 
+                </div>
+                </div>
+                <div id="save">
+                  <a href="/save/<%= elem._id %>" style="text-decoration: none;">
+                   <% if( elem.likes.length > 0){ %>
+                      <i class="ri-bookmark-line " style="background-color: red;"></i>
+                    
+                    <% } else{ %>
+                      <i class="ri-bookmark-line "></i>
+                     <% } %>
+                  </a>
+                </div>
+              </div>
+          </div>
+        
+          
+        
+        </div>
+        <% }) %>
+      </div>
+      <% } else{ %>
+        <h1> no post yet</h1>
+         <% } %> 
+         <div id="overlay">
+        </div>
+    </div>
+  <div id="right">
+  </div>
+</div>
+<div class="cursor"></div>
+<div class="cursor2"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+ 
+
+<script>
+
+
+    var search = document.querySelector("#search")
+    var inp = document.querySelector("input");
+    
+    inp.addEventListener('input',function(){
+      if(inp.value.length > 0){
+        axios.get(`/username/${inp.value}`)
+        .then(function(data){
+          var temp = ``;
+          data.data.data.forEach(function(val){
+            console.log(val.username)
+            temp += `  <div class="item">
+              <h5>${ val.username}</h5>
+              <a href="/addfriend/${ val.username} %>" class=" btn"> view </a>
+            </div>`
+         ;
+           search.innerHTML = temp;
+          })
+        })
+      }
+    })
+    var cursor =document.querySelector(".cursor")
+    var cursor2 =document.querySelector(".cursor2")
+    document.addEventListener('mousemove',function(e){
+      cursor.style = cursor2.style ="left:"+e.clientX +"px;top:"+e.clientY+"px;";
+    })
+
+
+    var storyData = null;
+    var middleTop = document.querySelector("#stories")
+    var currentIndex = 0;
+    var overlay = document.querySelector("#overlay")
+    var temp = ``;
+    
+    
+    axios.get('/view')
+    .then(function(recievedData){
+      storyData = recievedData.data.elem
+    })
+    
+    
+    function show(){
+        middleTop.addEventListener('click',function(val){
+            var index = Number(val.target.id);
+            var interval = setInterval(greet1 ,3000) ;
+            function greet1(){ 
+              if(storyData.length>index){ 
+                temp = `<div class="showStory">
+                  <div class="storyTop">
+                  <div class="userimg">
+                      <img src="../images/myupload/${storyData[index].suser.imageurl}" alt="">
+                  </div>
+                  <div class="storyTopText">
+                  <h3>${storyData[index].suser.username}</h3>
+                  <h6>${storyData[index].time}</h6>
+                  <span id="cancelButton"><i class="ri-close-line"></i></span>
+              </div>
+              <div id="conatiner">
+                <div class="progress">
+              
+            </div>
+              </div>
+                  </div>  
+                  <div class="mainimg">
+                      <img src="../images/myupload/${storyData[index].imageurl}" alt="">
+                  </div> 
+              </div>`
+              overlay.innerHTML = temp;
+              overlay.style.display = "initial"
+              cancel()
+                index +=1 ;
+              }else{ 
+                clearInterval(interval) ;
+                overlay.style.display = "";
+              }} 
+        })
+    }
+
+    
+    function cancel(){
+    var cancelButton = document.querySelector("#cancelButton")
+        cancelButton.addEventListener('click',function(){
+            overlay.style.display = "none"
+        })
+    }
+    show()
+  </script>
+</body>
+</html>
