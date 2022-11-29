@@ -1,0 +1,109 @@
+<% include ./same/header.ejs %>
+<style>
+  *
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body
+{
+  height: 100%;
+  width: 100%;
+}
+#main{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.container{
+  width: 20%;
+  height: 5%;
+}
+#search{
+  height: 30%;
+  width: 20%;
+  position: absolute;
+  left: 40%;
+  top: 10%;
+}
+.item{
+  height: 40px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+#alllist{
+  overflow: scroll;
+  height: 80%;
+  width: 20%;
+  left: 40%;
+  position: absolute;
+  top: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+#card{
+height: 100px;
+width: 80%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+</style>
+<div id="main">
+  <div id="list"> 
+    <div class="container">
+      <div class="input-group">
+    <span class="input-group-text">username</span>
+    <input type="text" aria-label="First name" class="form-control">
+  </div>
+  </div>
+  <div id="search">
+
+  </div>
+  </div>
+
+  <div id="alllist">
+    <% all.forEach(function(elem){ %>
+        <div id="card">
+          <div id="name">
+            <h5> <%= elem.username %></h5> 
+          </div>
+          <div id="bhej">
+            <a href="/shareto/<%= elem._id %>/<%= postkiid %>" class="btn btn-warning"> share </a>
+          </div>
+        </div>
+        
+        <% }) %>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  var search = document.querySelector("#search")
+  var inp = document.querySelector("input");
+  
+  inp.addEventListener('input',function(){
+    if(inp.value.length > 0){
+      axios.get(`/username/${inp.value}`)
+      .then(function(data){
+        var temp = ``;
+        data.data.data.forEach(function(val){
+          console.log(val.username)
+          temp += `  <div class="item">
+           <h5>${val.username}</h5>
+           <a href="/addfriend/${ val.username} %>" class="btn btn-primary p-1 ">share </a>
+           </div>`
+       ;
+         search.innerHTML = temp;
+        })
+      })
+    }
+  })
+</script>
+<% include ./same/footer.ejs %>

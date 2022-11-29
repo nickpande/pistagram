@@ -1,0 +1,232 @@
+*
+{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body
+{
+  min-height: 100vh;
+  width: 100%;
+}
+#main{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+#left{
+  overflow: hidden;
+  min-height: 100vh;
+  width: 30%;
+  position: relative;
+  
+}
+#cover{
+  min-height: 30vh;
+  background-color:#ECDBBA;
+  width: 100%;
+  position: absolute;
+  background-image: url('https://images.pexels.com/photos/1705254/pexels-photo-1705254.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+  background-position: center;
+  
+}
+.space{
+position: absolute;
+height: 100%;
+width: 20%;
+padding: 4px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+
+}
+#imagediv{
+  z-index: 7;
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: green;
+  position: relative;
+  left: 25%;
+  top: 10%;
+}
+#profile{
+  object-fit: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+
+}
+#details{
+  top: 30%;
+  position: absolute;
+  min-height:70vh;
+  width: 100%;
+  background-color: aliceblue;
+}
+#change{
+  position: absolute;
+  top: 18%;
+  left: 25%;
+  font-size: 15px;
+}
+.form{
+  top: 7%;
+  min-height: 16vh;
+  width: 100%;
+  position: absolute;
+
+}
+#submit{
+border-radius: 20px;
+position: absolute;
+left: 25%;
+top: 110%;
+}
+.card-body{
+  position: absolute;
+  top: 26%;
+  left: 10%;
+  min-height: 40vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#user{
+ font-size: 35px;
+ font-family: 'product sans';
+}
+#email{
+  font-size: 15px;
+}
+#para{
+  text-align: center;
+
+}
+
+#right{
+  width: 55%;
+  background-color: rgb(231, 231, 231);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.allpost{
+  overflow: scroll;
+  height: 700px;
+  width: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-behavior: smooth;
+ 
+}
+.post
+
+{
+  padding: 20px;
+  height: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  background-color: white;
+}
+#header{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  margin-bottom: 10px;
+  position: relative;
+}
+.imagediv{
+width: 100%;
+background-color: pink;
+height: 150px;
+
+
+}
+.imagediv img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#postbody{
+  height: 150px;
+  width: 100%;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+
+}
+.delete{
+  height: 45px;
+  width: 70px;
+  border-radius: 5px;
+  background-color: #155bc4 ;
+  text-decoration: none;
+  border: white;
+  
+}
+.delete a{
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  
+}
+.like{
+  position: absolute;
+  height: 45px;
+  width: 70px;
+  border-radius: 5px;
+  background-color: #1357bd;
+  text-decoration: none;
+  border: white;
+  left: 84%;
+  top: 80%;
+
+}
+.like a{
+  text-decoration: none;
+  color: white;
+
+}
+#friend{
+  width: 15%;
+  height: 100vh;
+  padding: 20px;
+}
+.flist{
+  width: 100%;
+  height: 10vh;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.naam{
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  text-decoration: underline;
+
+} 
+
+
+.allpost::-webkit-scrollbar {
+  width: 5px;
+}
+
+.allpost::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #2B7DE9;
+}

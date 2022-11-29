@@ -1,0 +1,118 @@
+<% include ./same/header.ejs %>
+
+<style>
+  *
+  {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html,body
+  {
+    height: 100%;
+    width: 100%;
+  }
+  #main{
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  #right{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+   
+  }
+  #left{
+    position: absolute;
+    left: 35%;
+    width: 30%;
+    height: 10%;
+  }
+  .container{
+    width: 70%;
+    height: 5%;
+  }
+  #search{
+    height: 30%;
+    width: 20%;
+  
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    margin-top: 20px;
+  
+  }
+  .item{
+    height: 40px;
+    width: 100%;
+
+    margin-bottom: 20px;
+  }
+
+</style>
+
+  <div id="main">
+    <div id="left">
+      <div class="container">
+        <div class="input-group">
+      <span class="input-group-text">username</span>
+      <input type="text" aria-label="First name" class="form-control">
+      
+    </div>
+    </div>
+    <div id="search">
+    </div>
+    </div>
+    <div id="right">
+      <% dets.forEach(function(elem){ %>
+      <div class="d-flex p-2 bd-highlight">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../images/myUpload/<%= elem.imageurl[elem.imageurl.length-1]%>" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= elem.username %></h5>
+          <p class="card-text"><%= elem.email %></p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <a href="/addfriend/<%= elem._id %>" class="btn btn-primary p-1 ">addfriend </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }) %>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  var search = document.querySelector("#search")
+  var inp = document.querySelector("input");
+  
+  inp.addEventListener('input',function(){
+    if(inp.value.length > 0){
+      axios.get(`/username/${inp.value}`)
+      .then(function(data){
+        var temp = ``;
+        data.data.data.forEach(function(val){
+          console.log(val.username)
+          temp += `  <div class="item">
+           <h5>${val.username}</h5>
+           <a href="/addfriend/${ val.username} %>" class="btn btn-primary p-1 ">addfriend </a>
+           </div>`
+       ;
+         search.innerHTML = temp;
+        })
+      })
+    }
+  })
+</script>
+
+<% include ./same/footer.ejs %>
